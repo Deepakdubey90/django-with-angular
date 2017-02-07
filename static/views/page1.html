@@ -1,0 +1,46 @@
+<div layout="row">
+  <div flex-sm="100" flex-sm="100" flex-gt-sm="70" offset-gt-sm="15" flex-gt-md="50" offset-gt-md="25" ng-hide="(joinMeetingScreen || $stateParams.onlyJoin) && !$stateParams.onlyStart">
+    <md-card>
+      <md-card-content>
+        <section layout="row" layout-align="center center">
+          <md-button class="md-raised md-primary" ng-click="startMeeting()">START A MEETING</md-button>
+          <md-button class="md-raised md-primary" ng-click="showJoingScreen()" ng-hide="$stateParams.onlyStart">JOIN A MEETING</md-button>
+        </section>
+      </md-card-content>
+    </md-card>
+  </div>
+
+  <div flex-sm="100" flex-gt-sm="70" offset-gt-sm="15" flex-gt-md="50" offset-gt-md="25" ng-show="joinMeetingScreen || $stateParams.onlyJoin">
+    <md-card>
+      <md-card-content>
+
+        <div style="text-align:center;" ng-hide="$stateParams.onlyJoin">
+          <md-menu md-offset="75px 45px">
+            <!-- Trigger element is a md-button with an icon -->
+            <md-button ng-click="$mdOpenMenu()" aria-label="Open sample menu">
+              GO TO ONE OF YOUR ACTIVE MEETINGS
+            </md-button>
+            <md-menu-content>
+              <md-menu-item ng-repeat="meeting in activeMeetings"><md-button ng-click="goToMeeting(meeting.id)">{{ meeting.id }}</md-button></md-menu-item>
+            </md-menu-content>
+          </md-menu>
+          <br/>
+          OR
+        </div>
+        <form name="joinForm" ng-submit="joinMeeting()">
+          <md-input-container flex>
+            <label>Enter Meeting #</label>
+            <input ng-model="joinFormData.id" name="id" ng-change="joinForm.apiErrors.id=[]">
+            <div ng-messages ng-show="joinForm.apiErrors.id">
+              <div ng-message>{{ joinForm.apiErrors.id[0] }}</div>
+            </div>
+          </md-input-container>
+          <section layout="row" layout-align="center center">
+            <md-button class="md-raised md-primary">JOIN</md-button>
+            <md-button class="md-raised md-warn" ng-click="joinMeetingScreen=false" ng-hide="$stateParams.onlyJoin" type="button">CANCEL</md-button>
+          </section>
+        </form>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

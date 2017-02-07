@@ -1,0 +1,27 @@
+<md-dialog>
+  <form ng-submit="recordResponse(poll, response)">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Poll</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div>
+        <md-content>
+          <p>{{ poll.question }}</p>
+          <md-radio-group ng-model="response">
+            <md-radio-button ng-repeat="option in poll.option | orderBy:'id'" value="{{ option.id }}">{{ option.value }}</md-radio-button>
+          </md-radio-group>
+        </md-content>
+      </div>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary md-raised" ng-disabled="sendingPoll">
+        VOTE
+      </md-button>
+      <md-button class="md-warn md-raised" type="button">
+        CLOSE
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

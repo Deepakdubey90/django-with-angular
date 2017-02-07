@@ -1,0 +1,44 @@
+<div>
+  <div layout="row">
+    <div flex-sm="100" flex-gt-sm="70" offset-gt-sm="15" flex-gt-md="50" offset-gt-md="25">
+      <md-card>
+        <md-card-content>
+          <md-list>
+            <md-subheader class="md-no-sticky"><h3>{{ poll.question }}</h3></md-subheader>
+            <md-list-item ng-repeat="option in poll.option | orderBy:'id'">
+              <p>{{ option.value }}</p>
+              <i>{{ option.vote }}</i>
+            </md-list-item>
+          </md-list>
+
+          <!--
+          <section style="text-align:right;">
+            <md-button class="md-primary md-raised" ng-click="closePoll()">CLOSE POLL</md-button>
+          </section>
+          -->
+
+        </md-card-content>
+      </md-card>
+    </div>
+
+
+
+    <div style="position:fixed; right:10px; bottom:10px;">
+      <md-fab-speed-dial md-direction="up" ng-class="md-fling">
+        <md-fab-trigger>
+          <md-button aria-label="menu" class="md-fab md-primary">
+            <i class="zmdi zmdi-star zmdi-hc-2x"></i>
+          </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+          <md-button aria-label="exit" class="md-fab md-raised md-mini" ng-click="closePoll()">
+            <i class="zmdi zmdi-close-circle zmdi-hc-1x"></i>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+    </div>
+
+
+
+  </div>
+</div>
